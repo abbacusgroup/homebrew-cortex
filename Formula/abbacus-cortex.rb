@@ -1,8 +1,8 @@
 class AbbacusCortex < Formula
   desc "AI knowledge pipeline -- capture, search, and reason over your knowledge"
   homepage "https://github.com/abbacusgroup/Cortex"
-  url "https://files.pythonhosted.org/packages/source/a/abbacus-cortex/abbacus_cortex-0.2.1.tar.gz"
-  sha256 "0cebbd3846b7e8d90cb3c4ecc4f44805f05616c066371f09810fb71217c53f47"
+  url "https://files.pythonhosted.org/packages/source/a/abbacus-cortex/abbacus_cortex-0.3.0.tar.gz"
+  sha256 "2c0fbfb67190beb03ca9b426dd825a55d45c6b63208b1161444e5f44b77551ea"
   license "MIT"
 
   depends_on "python@3.12"
@@ -26,7 +26,7 @@ class AbbacusCortex < Formula
         cortex serve --transport mcp-http
 
       Initialize Cortex (first time only):
-        cortex init
+        cortex setup
 
       For semantic search, install the embeddings extra:
         #{libexec}/bin/pip install sentence-transformers
