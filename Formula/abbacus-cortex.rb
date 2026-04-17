@@ -1,15 +1,22 @@
 class AbbacusCortex < Formula
-  desc "AI knowledge pipeline -- capture, search, and reason over your knowledge"
+  include Language::Python::Virtualenv
+
+  desc "Cognitive knowledge system with formal ontology, reasoning, and intelligence serving"
   homepage "https://github.com/abbacusgroup/Cortex"
-  url "https://files.pythonhosted.org/packages/source/a/abbacus-cortex/abbacus_cortex-0.3.0.tar.gz"
-  sha256 "2c0fbfb67190beb03ca9b426dd825a55d45c6b63208b1161444e5f44b77551ea"
+  url "https://files.pythonhosted.org/packages/source/a/abbacus-cortex/abbacus_cortex-0.3.2.tar.gz"
+  sha256 "c91d3bdf1078b70d75539ab07aa6f52982c6bc59196cf7b34d9ee55a80e14a34"
   license "MIT"
 
   depends_on "python@3.12"
 
   def install
-    venv = virtualenv_create(libexec, "python3.12")
-    venv.pip_install_and_link buildpath
+    python3 = "python3.12"
+    venv = virtualenv_create(libexec, python3)
+    # Install from PyPI wheel (avoids building from source)
+    system libexec/"bin/python", "-m", "ensurepip", "--default-pip"
+    system libexec/"bin/python", "-m", "pip", "install", "--upgrade", "pip"
+    system libexec/"bin/python", "-m", "pip", "install", "abbacus-cortex==#{version}"
+    bin.install_symlink libexec/"bin/cortex"
   end
 
   def post_install
@@ -19,22 +26,14 @@ class AbbacusCortex < Formula
 
   def caveats
     <<~EOS
-      To start the Cortex MCP server as a background service:
-        brew services start abbacus-cortex
-
-      Or run manually:
-        cortex serve --transport mcp-http
-
-      Initialize Cortex (first time only):
+      Run the setup wizard (first time only):
         cortex setup
 
-      For semantic search, install the embeddings extra:
-        #{libexec}/bin/pip install sentence-transformers
+      The wizard configures your LLM provider, installs embeddings,
+      sets up background services, and registers with Claude Code.
 
-      Or configure an API-based embedding provider:
-        export CORTEX_EMBEDDING_PROVIDER=litellm
-        export CORTEX_EMBEDDING_MODEL=openai/text-embedding-3-small
-        export CORTEX_EMBEDDING_API_KEY=sk-...
+      Or start manually:
+        cortex serve --transport mcp-http
     EOS
   end
 
