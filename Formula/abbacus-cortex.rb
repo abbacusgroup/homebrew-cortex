@@ -1,17 +1,17 @@
 class AbbacusCortex < Formula
   include Language::Python::Virtualenv
 
-  desc "Cognitive knowledge system with formal ontology, reasoning, and intelligence serving"
+  desc "Cognitive knowledge system with ontology, reasoning, and intelligence serving"
   homepage "https://github.com/abbacusgroup/Cortex"
-  url "https://files.pythonhosted.org/packages/source/a/abbacus-cortex/abbacus_cortex-0.3.2.tar.gz"
-  sha256 "c91d3bdf1078b70d75539ab07aa6f52982c6bc59196cf7b34d9ee55a80e14a34"
+  url "https://files.pythonhosted.org/packages/b9/cd/bb32f6f38df9b3919bd11aa669ccee095a63f1dc811a62b1a16fb6c934eb/abbacus_cortex-0.3.4.tar.gz"
+  sha256 "a9e98613d46256e120c7aa6861796d629420fe61ceae23f8f0f41dd48d081f33"
   license "MIT"
 
   depends_on "python@3.12"
 
   def install
     python3 = "python3.12"
-    venv = virtualenv_create(libexec, python3)
+    virtualenv_create(libexec, python3)
     # Install from PyPI wheel (avoids building from source)
     system libexec/"bin/python", "-m", "ensurepip", "--default-pip"
     system libexec/"bin/python", "-m", "pip", "install", "--upgrade", "pip"
