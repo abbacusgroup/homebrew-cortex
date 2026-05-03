@@ -3,8 +3,8 @@ class AbbacusCortex < Formula
 
   desc "Cognitive knowledge system with ontology, reasoning, and intelligence serving"
   homepage "https://github.com/abbacusgroup/Cortex"
-  url "https://files.pythonhosted.org/packages/d8/e3/9f661e3f644e0f903c866c6fa4731616eb829b329b84e7c3fb122e557955/abbacus_cortex-0.3.5.tar.gz"
-  sha256 "bd7816a4825c1cc6a6b66e894d863b1148a16ac396a69bcb764509cda6b4ad94"
+  url "https://files.pythonhosted.org/packages/50/f2/bd1c743321a2f99cfb71170050c34f0fa4e9055a9bddd3de594b381f0ac5/abbacus_cortex-0.3.6.tar.gz"
+  sha256 "b610afc2f0499ce1197465014068143fbbedf35b8a9851d0e8aa6bdd53527ab0"
   license "MIT"
 
   depends_on "python@3.12"
